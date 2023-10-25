@@ -120,7 +120,7 @@ rep_values
 
 arr <- array(rep_values, dim = c(2,4,3))
 arr
-
+'
 # 3 b 
 # three dimensions
 
