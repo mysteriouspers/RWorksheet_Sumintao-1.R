@@ -1,0 +1,117 @@
+---
+title: "RWorksheet_Sumintao#4b"
+output: pdf_document
+date: "2023-11-08"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#1.for() loop Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
+
+A <- c(1,2,3,4,5)
+zero_matrix <- matrix(0, nrow = 5,ncol = 5)
+matrix_result <- rbind(A, zero_matrix)
+print(matrix_result)
+
+
+#2. Print the string "*" using for() function. The output should be the same as shown in Figure
+
+for (i in 1:5){
+jls <- rep ("*",i)
+print(jls)
+}
+  
+#3. Get an input from the user to print the Fibonacci sequence starting from the 1st inputup to 500. Use repeat and break statements. Write the R Scripts and its output.
+
+ a <- b
+ b <- nextFib
+userInp <- as.numeric(readline("enter a number to start the Fibonacci sequence:"))
+
+a <- 0
+b <- 1
+
+cat("Fibonnaci sequence startingfrom", userInp,":")
+cat(userInp," ")
+
+repeat {
+ nextFib <- a + b
+ 
+  if (nextFib >500) {
+    break
+    
+ cat(nextFib," ")
+
+}
+
+
+
+
+
+
+#4.Import the dataset as shown in Figure 1 you have created previously.
+
+
+
+
+#5.The monthly income of Dela Cruz family was spent on the following:
+
+#a.Create a piechart that will include labels in percentage.Add some colors and title of the chart. Write the R scripts and show its output.
+
+```{r}
+data <- c(60, 10, 5, 25)
+labels <- c("Food", "Electricity", "Savings", "Miscellaneous")
+colors <- c("blue", "black", "violet", "red")
+pie(data, labels = labels, col = colors, main = "My Pie Chart")
+```
+
+#6. Use the iris dataset.
+
+```{r}
+data(iris)
+
+species_count <- table(iris$Species)
+colors <- c("black", "blue", "violet", "red")
+pie(species_count, labels = levels(iris$Species), col = colors, main = "Iris Species Distribution")
+```
+
+#a. Check for the structure of the dataset using the str() function. Describe what you have seen in the output.
+
+data(iris)
+str(iris)
+
+
+#b. Create an R object that will contain the mean of the sepal.length, sepal.width,petal.length,and petal.width. What is the R script and its result?
+
+
+
+
+
+#c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write the R script and its result.
+
+```{r}
+data(iris)
+species_count <- table(iris$Species)
+colors <- c("skyblue", "blue", "black", "red")
+pie(species_count, labels = levels(iris$Species), col = colors, main = "Iris Species Distribution")
+legend("topright", legend = levels(iris$Species), fill =colors, title = "Species")
+```
+
+
+#d. Subset the species into setosa, versicolor, and virginica. Write the R scripts and show the last six (6) rows of each species.
+
+```{r}
+data(iris)
+setosa_data <- subset(iris, Species == "setosa")
+versicolor_data <- subset(iris, Species == "versicolor")
+virginica_data <- subset(iris, Species == "virginica")
+
+tail(setosa_data)
+tail(versicolor_data)
+tail(virginica_data)
+```
+
+#e. Create a scatterplot of the sepal.length and sepal.width using the different species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+
+
