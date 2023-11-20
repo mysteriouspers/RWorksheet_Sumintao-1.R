@@ -10,48 +10,26 @@ knitr::opts_chunk$set(echo = TRUE)
 
 #1.for() loop Using the for loop, create an R script that will display a 5x5 matrix as shown in Figure 1. It must contain vectorA = [1,2,3,4,5] and a 5 x 5 zero matrix.
 
+```{r}
 A <- c(1,2,3,4,5)
 zero_matrix <- matrix(0, nrow = 5,ncol = 5)
 matrix_result <- rbind(A, zero_matrix)
 print(matrix_result)
-
+```
 
 #2. Print the string "*" using for() function. The output should be the same as shown in Figure
 
+```{r}
 for (i in 1:5){
 jls <- rep ("*",i)
 print(jls)
 }
-  
+``` 
 #3. Get an input from the user to print the Fibonacci sequence starting from the 1st inputup to 500. Use repeat and break statements. Write the R Scripts and its output.
-
- a <- b
- b <- nextFib
-userInp <- as.numeric(readline("enter a number to start the Fibonacci sequence:"))
-
-a <- 0
-b <- 1
-
-cat("Fibonnaci sequence startingfrom", userInp,":")
-cat(userInp," ")
-
-repeat {
- nextFib <- a + b
- 
-  if (nextFib >500) {
-    break
-    
- cat(nextFib," ")
-
-}
-
-
-
 
 
 
 #4.Import the dataset as shown in Figure 1 you have created previously.
-
 
 
 
@@ -81,8 +59,15 @@ pie(species_count, labels = levels(iris$Species), col = colors, main = "Iris Spe
 data(iris)
 str(iris)
 
+> This output helps in understanding the structure of the dataset, the types of variables it contains, and a preview of the data values in each column.
 
 #b. Create an R object that will contain the mean of the sepal.length, sepal.width,petal.length,and petal.width. What is the R script and its result?
+
+```{r}
+means <- colMeans(iris[c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")])
+means
+```
+
 
 
 
@@ -113,5 +98,66 @@ tail(virginica_data)
 ```
 
 #e. Create a scatterplot of the sepal.length and sepal.width using the different species(setosa,versicolor,virginica). Add a title = “Iris Dataset”, subtitle = “Sepal width and length, labels for the x and y axis, the pch symbol and colors should be based on the species.
+
+```{r}
+data(iris)
+
+plot(iris$Sepal.Length, iris$Sepal.Width, 
+     col = as.integer(iris$Species), 
+     pch = as.integer(iris$Species),
+     xlab = "Sepal Length", 
+     ylab = "Sepal Width",
+     main = "Iris Dataset",
+     sub = "Sepal width and length",
+     cex.main = 1.2,
+     cex.sub = 0.8)
+
+legend("topright", legend = levels(iris$Species), 
+       col = 1:length(levels(iris$Species)), pch = 1:length(levels(iris$Species)), 
+       title = "Species", cex = 0.8)
+```
+
+#Hint: Need to convert to factors the species to store categorical variables.
+#f. Interpret the result.
+
+
+>To interpret the result of the scatterplot with categorical variables representing different species. Scatterplot Representation:
+--The scatterplot displays Sepal.Length on the x-axis and Sepal.Width on the y-axis. Each data point in the plot represents an iris flower. The colors and symbols differentiate between three species: setosa, versicolor, and virginica. One can analyze any patterns or clusters formed by these species concerning their sepal characteristics.
+
+#7 Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, Black Spot). Also on the white variants (White Dot, White Plus, White Show, White Spot).
+
+
+
+
+#a.Rename the white and black variants by using gsub() function.
+
+
+#Syntax: RObject$columnName <- gsub("Old Name", "New Name", RObject$columnName) Write the R scripts and show an example of the output by getting a snippet. To embed an image into Rmd, use the function below: knitr::include_graphics("file path")
+# knitr::include_graphics("file path") knitr::include_graphics("E:/RBasics/R_Directory/CS101(lectures_23)/BasicsOfR/RBasics/notes/images/m2.JPG")
+
+
+#c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
+
+```{r}
+ barplot(table(variations_data), 
+ main = "Variations",  
+        xlab = "Variants",    
+        ylab = "Frequency",
+        col = "blue",    
+        legend.text = TRUE)
+
+text(x = 1:length(table(variations_data)),
+     y = table(variations_data),            
+     label = as.character(table(variations_data)),
+     pos = 3,                             
+     cex = 0.8)    
+     legend("topright", legend = names(table(variations_data)),fill= "blue")         
+```
+
+
+
+
+
+
 
 
