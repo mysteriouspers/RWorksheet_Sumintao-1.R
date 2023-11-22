@@ -1,6 +1,8 @@
 ---
 title: "RWorksheet_Sumintao#4b"
-output: pdf_document
+output:
+  html_document:
+    df_print: paged
 date: "2023-11-08"
 ---
 
@@ -26,12 +28,36 @@ print(jls)
 }
 ``` 
 #3. Get an input from the user to print the Fibonacci sequence starting from the 1st inputup to 500. Use repeat and break statements. Write the R Scripts and its output.
+```{r}
+userInput <- as.integer(readline("Enter starting number for Fibonnacci sequence:"))
 
-
+if(is.na(userInput || userInput < 0)){
+} else {
+  x <- userInput
+  y <- 0
+  
+  cat("Fibonacci sequence starting from", userInput, ":\n")
+  
+  repeat{
+    
+    next_num <- x + y
+    
+    if (next_num > 500){
+      break
+    }
+    cat(next_num," ")
+    x <- y
+    y <- next_num
+  }
+}
+```
 
 #4.Import the dataset as shown in Figure 1 you have created previously.
+```{r,error=TRUE}
 
-
+read.csv("Household.csv")
+head(Household)
+```
 
 #5.The monthly income of Dela Cruz family was spent on the following:
 
@@ -67,11 +93,6 @@ str(iris)
 means <- colMeans(iris[c("Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width")])
 means
 ```
-
-
-
-
-
 
 #c. Create a pie chart for the Species distribution. Add title, legends, and colors. Write the R script and its result.
 
@@ -126,11 +147,29 @@ legend("topright", legend = levels(iris$Species),
 
 #7 Import the alexa-file.xlsx. Check on the variations. Notice that there are extra whitespaces among black variants (Black Dot, Black Plus, Black Show, Black Spot). Also on the white variants (White Dot, White Plus, White Show, White Spot).
 
-
+```{r,error=TRUE}
+install.packages("readxl")
+library(readxl)
+ file<-read_excel("alexa_file.xlsx")
+```
 
 
 #a.Rename the white and black variants by using gsub() function.
+```{r,error=TRUE}
 
+alexa_file$variation <- gsub("Black  Dot", "BlackDot", alexa_file$variation)
+alexa_file$variation <- gsub("Black  Plus", "BlackPlus", alexa_file$variation)
+alexa_file$variation <- gsub("Black  Show", "BlackShow", alexa_file$variation)
+alexa_file$variation <- gsub("Black  Spot", "BlackSpot", alexa_file$variation)
+
+alexa_file$variation <- gsub("White  Dot", "WhiteDot", alexa_file$variation)
+alexa_file$variation <- gsub("White  Plus", "WhitePlus", alexa_file$variation)
+alexa_file$variation <- gsub("White  Show", "WhiteShow", alexa_file$variation)
+alexa_file$variation <- gsub("White  Spot", "WhiteSpot", alexa_file$variation)
+
+alexa_file
+
+```
 
 #Syntax: RObject$columnName <- gsub("Old Name", "New Name", RObject$columnName) Write the R scripts and show an example of the output by getting a snippet. To embed an image into Rmd, use the function below: knitr::include_graphics("file path")
 # knitr::include_graphics("file path") knitr::include_graphics("E:/RBasics/R_Directory/CS101(lectures_23)/BasicsOfR/RBasics/notes/images/m2.JPG")
@@ -138,7 +177,7 @@ legend("topright", legend = levels(iris$Species),
 
 #c. From the variations.RData, create a barplot(). Complete the details of the chart which include the title, color, labels of each bar.
 
-```{r}
+```{r,error=TRUE}
  barplot(table(variations_data), 
  main = "Variations",  
         xlab = "Variants",    
